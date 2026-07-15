@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: ["dark"];
+}
+
+/* Custom CSS Variables & Aesthetics */
+:root {
+  --background: 232 47% 5%;
+  --foreground: 222 47% 95%;
+  --primary: 262 83% 58%;
+  --primary-glow: 262 83% 58% / 0.15;
+  --secondary: 189 94% 43%;
+  --border: 240 19% 16%;
+}
+
+body {
+  background-color: #070913;
+  color: #f1f5f9;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #070913;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1b4b;
+  border-radius: 9px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #312e81;
+}
+
+/* Glassmorphism panel styling */
+.glass-panel {
+  background: rgba(12, 15, 26, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Glowing text effects */
+.glow-text-primary {
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+}
+.glow-text-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+
+/* Radial Glow Element */
+.radial-glow {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 100%);
+  filter: blur(60px);
+}
