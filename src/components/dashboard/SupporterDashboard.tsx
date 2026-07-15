@@ -327,9 +327,12 @@ export default function SupporterDashboard() {
                       <input
                         type="text"
                         required
+                        maxLength={16}
+                        pattern="\d{16}"
+                        title="16 digit card number"
                         value={cardNumber}
-                        onChange={(e) => setCardNumber(e.target.value)}
-                        placeholder="4242 4242 4242 4242"
+                        onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, ''))}
+                        placeholder="1234567812345678"
                         className="w-full rounded-xl border border-white/[0.08] bg-white/[0.02] pl-11 pr-4 py-3 text-xs text-white focus:border-violet-500 outline-none"
                       />
                     </div>
@@ -341,21 +344,30 @@ export default function SupporterDashboard() {
                       <input
                         type="text"
                         required
+                        maxLength={5}
+                        pattern="(0[1-9]|1[0-2])\/\d{2}"
+                        title="MM/YY format (e.g. 12/25)"
                         value={cardExpiry}
-                        onChange={(e) => setCardExpiry(e.target.value)}
+                        onChange={(e) => {
+                          let val = e.target.value.replace(/[^\d/]/g, '');
+                          if (val.length === 2 && !val.includes('/')) val += '/';
+                          setCardExpiry(val);
+                        }}
                         placeholder="MM/YY"
                         className="w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-xs text-white focus:border-violet-500 outline-none"
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wide text-slate-400">CVC Code</label>
+                      <label className="text-[10px] font-bold uppercase tracking-wide text-slate-400">CCV Code</label>
                       <input
                         type="password"
                         required
-                        maxLength={3}
+                        maxLength={4}
+                        pattern="\d{3,4}"
+                        title="3 or 4 digit CCV"
                         value={cardCVC}
-                        onChange={(e) => setCardCVC(e.target.value)}
-                        placeholder="•••"
+                        onChange={(e) => setCardCVC(e.target.value.replace(/\D/g, ''))}
+                        placeholder="••••"
                         className="w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-xs text-white focus:border-violet-500 outline-none"
                       />
                     </div>
@@ -410,7 +422,7 @@ export default function SupporterDashboard() {
                         <td className="font-bold text-cyan-400">+{p.credits_purchased} Credits</td>
                         <td className="font-semibold text-slate-200">${p.amount_paid}.00</td>
                         <td>
-                          <span className="badge badge-success bg-emerald-950 text-emerald-300 border-emerald-800 flex items-center gap-1 text-[10px]">
+                          <span className="font-semibold capitalize text-emerald-400 flex items-center gap-1 text-[10px]">
                             <CheckCircle className="h-3 w-3" />
                             {p.status}
                           </span>
