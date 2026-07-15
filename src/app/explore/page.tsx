@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { API_URL } from "@/components/AppContext";
@@ -21,7 +21,7 @@ interface Campaign {
   creator_name: string;
 }
 
-export default function ExplorePage() {
+function ExploreContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "";
 
@@ -247,5 +247,13 @@ export default function ExplorePage() {
 
       </div>
     </div>
+  );
+}
+
+export default function ExplorePage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen items-center justify-center"><span className="loading loading-spinner text-violet-500"></span></div>}>
+      <ExploreContent />
+    </Suspense>
   );
 }
