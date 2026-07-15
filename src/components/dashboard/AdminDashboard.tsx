@@ -617,12 +617,12 @@ export default function AdminDashboard() {
                         </td>
                         <td>
                           <span
-                            className={`badge ${
+                            className={`font-semibold capitalize ${
                               c.status === "approved"
-                                ? "badge-success bg-emerald-950 text-emerald-300 border-emerald-800"
+                                ? "text-emerald-400"
                                 : c.status === "rejected"
-                                ? "badge-error bg-rose-950 text-rose-300 border-rose-800"
-                                : "badge-warning bg-amber-950 text-amber-300 border-amber-800"
+                                ? "text-rose-400"
+                                : "text-amber-400"
                             }`}
                           >
                             {c.status}
